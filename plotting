@@ -1,0 +1,58 @@
+data(airquality)
+#'data.frame': 111 obs. of  6 variables:    
+$ Ozone  : int  41 36 12 18 23 19 8 16 11 14 ...    
+$ Solar.R: int  190 118 149 313 299 99 19 256 290 274 ...    
+$ Wind   : num  7.4 8 12.6 11.5 8.6 13.8 20.1 9.7 9.2 10.9 ...    
+$ Temp   : int  67 72 74 62 65 59 61 69 66 68 ...    
+$ Month  : int  5 5 5 5 5 5 5 5 5 5 ...    
+$ Day    : int  1 2 3 4 7 8 9 12 13 14 ... `
+head(airquality, n=3)
+tail(airquality, n=3)
+summary(airquality)
+plot(airquality$Ozone)
+plot(airquality$Ozone, airquality$Wind)
+plot(airquality)
+plot(airquality$Ozone, type= "h")
+plot(airquality$Ozone, xlab = 'ozone Concentration', ylab = 'No of Instances', main = 'Ozone levels in NY city', col = 'green')
+# Horizontal bar plot
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', 
+        col= 'green',horiz = TRUE)
+hist(airquality$Solar.R)
+hist(airquality$Solar.R, main = 'Solar Radiation values in air',xlab = 'Solar rad.', col='red')
+#Single box plot
+boxplot(airquality$Solar.R)
+# Multiple box plots
+boxplot(airquality[,0:4], main='Multiple Box plots')
+par(mfrow=c(3,3), mar=c(2,5,2,1), las=1, bty="n")
+plot(airquality$Ozone)
+plot(airquality$Ozone, airquality$Wind)
+plot(airquality$Ozone, type= "c")
+plot(airquality$Ozone, type= "s")
+plot(airquality$Ozone, type= "h")
+barplot(airquality$Ozone, main = 'Ozone Concenteration in air',xlab = 'ozone levels', col='green',horiz = TRUE)
+hist(airquality$Solar.R)
+boxplot(airquality$Solar.R)
+boxplot(airquality[,0:4], main='Multiple Box plots')
+# Installing & Loading the package
+install.packages("lattice")
+library(lattice)  
+#Loading the dataset
+attach(mtcars)
+head(mtcars)
+gear_factor<-factor(gear,levels=c(3,4,5),
+                    labels=c("3gears","4gears","5gears")) 
+
+cyl_factor <-factor(cyl,levels=c(4,6,8),
+                    labels=c("4cyl","6cyl","8cyl"))
+densityplot(~mpg, main="Density Plot",  xlab="Miles per Gallon")
+splom(mtcars[c(1,3,4,5,6)], main="MTCARS Data")
+xyplot(mpg~wt|cyl_factor*gear_factor,  
+       main="Scatterplots : Cylinders and Gears",  
+       ylab="Miles/Gallon", xlab="Weight of Car")
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg)) + geom_point()
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, color = as.factor(cyl))) + geom_point()
+ggplot(data = mtcars, mapping = aes(x = wt, y = mpg, size = qsec)) + geom_point()
+p  <-  ggplot(mtcars,aes(mpg, wt, shape  =  factor(cyl)))
+p + geom_point(aes(colour  =  factor(cyl)), size  =  4) + geom_point(colour  =  "grey90", size  =  1.5)
+#Installing & Loading the package 
+
